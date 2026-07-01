@@ -143,7 +143,11 @@ function initAuth() {
 
   if (!loginScreen || !loginForm) return;
 
-  const hasProfile = Boolean(state.userProfile?.name?.trim());
+  const hasProfile = Boolean(
+    state.userProfile?.name &&
+    state.userProfile.name.trim() &&
+    state.userProfile.name !== "Nova",
+  );
   loginScreen.classList.toggle("hidden", hasProfile);
   loginScreen.classList.toggle("flex", !hasProfile);
 
