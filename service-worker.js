@@ -1,4 +1,4 @@
-const CACHE_NAME = "vanta-tasks-v1";
+const CACHE_NAME = "banabells-tasks-v2";
 const APP_SHELL = [
   "./",
   "./index.html",

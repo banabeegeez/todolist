@@ -225,6 +225,15 @@
       </div>
     </div>
 
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        const splash = document.getElementById("splash");
+        if (splash) {
+          splash.classList.add("hidden");
+          setTimeout(() => splash.remove(), 300);
+        }
+      });
+    </script>
     <script type="module" src="js/app.js"></script>
   </body>
 </html>
