@@ -6,6 +6,7 @@ import {
   saveStats,
   saveTasks,
   STORAGE_KEYS,
+  saveUserProfile,
 } from "./storage.js";
 import { initAnimations, showConfetti } from "./animation.js";
 import { initCalendarInteractions } from "./calendar.js";
@@ -135,10 +136,37 @@ function wireEvents() {
   });
 }
 
+function initAuth() {
+  const loginScreen = document.getElementById("loginScreen");
+  const loginForm = document.getElementById("loginForm");
+  const state = getState();
+
+  if (!loginScreen || !loginForm) return;
+
+  const hasProfile = Boolean(state.userProfile?.name?.trim());
+  loginScreen.classList.toggle("hidden", hasProfile);
+  loginScreen.classList.toggle("flex", !hasProfile);
+
+  loginForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const form = new FormData(event.currentTarget);
+    const profile = {
+      name: String(form.get("name") || "Nova").trim(),
+      email: String(form.get("email") || "").trim(),
+    };
+    saveUserProfile(profile);
+    setState({ userProfile: profile });
+    renderGreeting();
+    loginScreen.classList.add("hidden");
+    loginScreen.classList.remove("flex");
+  });
+}
+
 function initPage() {
   resetAppState();
 
   initUI();
+  initAuth();
   initCalendarInteractions();
   initAnimations();
   initReminder();

@@ -2,6 +2,7 @@ const STORAGE_KEYS = {
   tasks: "banabells.tasks",
   settings: "banabells.settings",
   stats: "banabells.stats",
+  userProfile: "banabells.userProfile",
 };
 
 const defaultSettings = {
@@ -17,6 +18,11 @@ const defaultStats = {
   history: [3, 4, 6, 5, 7, 6, 8],
 };
 
+const defaultProfile = {
+  name: "Nova",
+  email: "",
+};
+
 export function loadData() {
   const tasks = JSON.parse(localStorage.getItem(STORAGE_KEYS.tasks) || "[]");
   const settings = {
@@ -27,7 +33,11 @@ export function loadData() {
     ...defaultStats,
     ...JSON.parse(localStorage.getItem(STORAGE_KEYS.stats) || "{}"),
   };
-  return { tasks, settings, stats };
+  const profile = {
+    ...defaultProfile,
+    ...JSON.parse(localStorage.getItem(STORAGE_KEYS.userProfile) || "{}"),
+  };
+  return { tasks, settings, stats, profile };
 }
 
 export function saveTasks(tasks) {

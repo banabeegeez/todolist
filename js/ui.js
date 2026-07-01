@@ -5,16 +5,18 @@ let state = {
   tasks: [],
   settings: {},
   stats: {},
+  userProfile: { name: "Nova", email: "" },
   selectedDate: new Date().toISOString().slice(0, 10),
   filter: "all",
   search: "",
 };
 
 export function initUI() {
-  const { tasks, settings, stats } = loadData();
+  const { tasks, settings, stats, profile } = loadData();
   state.tasks = tasks;
   state.settings = settings;
   state.stats = stats;
+  state.userProfile = profile;
   renderGreeting();
   renderCalendarStrip();
   renderTaskFilters();
@@ -35,8 +37,11 @@ export function setState(partial) {
 
 export function renderGreeting() {
   const greetingEl = document.getElementById("greeting");
+  const nameEl = document.getElementById("userName");
   const todayEl = document.getElementById("todayLabel");
+  const displayName = state.userProfile?.name?.trim() || "Nova";
   if (greetingEl) greetingEl.textContent = getGreeting();
+  if (nameEl) nameEl.textContent = `Hello, ${displayName}`;
   if (todayEl)
     todayEl.textContent = `Today • ${new Date().toLocaleDateString("en", { weekday: "long", month: "short", day: "numeric" })}`;
 }

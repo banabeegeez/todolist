@@ -36,6 +36,20 @@
       </div>
     </div>
 
+    <div id="loginScreen" class="fixed inset-0 z-[1100] hidden items-center justify-center bg-[#120b26]/95 px-4">
+      <div class="w-full max-w-sm rounded-[28px] border border-white/10 bg-white/10 p-5 shadow-[0_20px_60px_rgba(0,0,0,0.35)] backdrop-blur-xl">
+        <p class="text-sm text-slate-400">Welcome to Banabells</p>
+        <h2 class="mt-1 text-2xl font-semibold">Sign in to continue</h2>
+        <form id="loginForm" class="mt-5 space-y-3">
+          <input name="email" type="email" required placeholder="Email address" class="input-field" />
+          <input name="name" required maxlength="24" placeholder="Your name" class="input-field" />
+          <button class="w-full rounded-2xl bg-gradient-to-r from-violet-500 to-fuchsia-500 px-4 py-3 font-semibold text-white">
+            Continue
+          </button>
+        </form>
+      </div>
+    </div>
+
     <div
       class="mx-auto flex min-h-screen w-full max-w-6xl flex-col px-3 pb-24 pt-3 sm:px-6 lg:px-8"
     >
@@ -45,7 +59,7 @@
         <div class="flex items-center justify-between">
           <div>
             <p id="greeting" class="text-sm text-slate-400">Good Morning 👋</p>
-            <h1 class="text-xl font-semibold">Hello, Nova</h1>
+            <h1 id="userName" class="text-xl font-semibold">Hello, Nova</h1>
           </div>
           <div class="flex items-center gap-3">
             <button
