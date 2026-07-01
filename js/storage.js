@@ -42,6 +42,17 @@ export function saveStats(stats) {
   localStorage.setItem(STORAGE_KEYS.stats, JSON.stringify(stats));
 }
 
+export function resetAppState() {
+  const legacyKeys = ["vanta.tasks", "vanta.settings", "vanta.stats"];
+  for (const key of [...Object.values(STORAGE_KEYS), ...legacyKeys]) {
+    localStorage.removeItem(key);
+  }
+
+  saveTasks([]);
+  saveSettings(defaultSettings);
+  saveStats(defaultStats);
+}
+
 export function createTask(task) {
   return {
     id: crypto.randomUUID(),

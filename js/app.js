@@ -1,9 +1,11 @@
 import {
   createTask,
   loadData,
+  resetAppState,
   saveSettings,
   saveStats,
   saveTasks,
+  STORAGE_KEYS,
 } from "./storage.js";
 import { initAnimations, showConfetti } from "./animation.js";
 import { initCalendarInteractions } from "./calendar.js";
@@ -120,7 +122,7 @@ function wireEvents() {
   });
 
   document.getElementById("resetBtn")?.addEventListener("click", () => {
-    localStorage.clear();
+    resetAppState();
     location.reload();
   });
 
@@ -134,14 +136,7 @@ function wireEvents() {
 }
 
 function initPage() {
-  const hasExistingData = Object.values(STORAGE_KEYS).some((key) =>
-    localStorage.getItem(key),
-  );
-  if (!hasExistingData) {
-    localStorage.removeItem(STORAGE_KEYS.tasks);
-    localStorage.removeItem(STORAGE_KEYS.settings);
-    localStorage.removeItem(STORAGE_KEYS.stats);
-  }
+  resetAppState();
 
   initUI();
   initCalendarInteractions();
