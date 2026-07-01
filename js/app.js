@@ -163,8 +163,6 @@ function initAuth() {
 }
 
 function initPage() {
-  resetAppState();
-
   initUI();
   initAuth();
   initCalendarInteractions();

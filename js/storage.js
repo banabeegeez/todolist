@@ -23,19 +23,29 @@ const defaultProfile = {
   email: "",
 };
 
+function readStoredJSON(key, fallback) {
+  try {
+    const raw = localStorage.getItem(key);
+    const parsed = raw ? JSON.parse(raw) : null;
+    return parsed ?? fallback;
+  } catch {
+    return fallback;
+  }
+}
+
 export function loadData() {
-  const tasks = JSON.parse(localStorage.getItem(STORAGE_KEYS.tasks) || "[]");
+  const tasks = readStoredJSON(STORAGE_KEYS.tasks, []);
   const settings = {
     ...defaultSettings,
-    ...JSON.parse(localStorage.getItem(STORAGE_KEYS.settings) || "{}"),
+    ...readStoredJSON(STORAGE_KEYS.settings, {}),
   };
   const stats = {
     ...defaultStats,
-    ...JSON.parse(localStorage.getItem(STORAGE_KEYS.stats) || "{}"),
+    ...readStoredJSON(STORAGE_KEYS.stats, {}),
   };
   const profile = {
     ...defaultProfile,
-    ...JSON.parse(localStorage.getItem(STORAGE_KEYS.userProfile) || "{}"),
+    ...readStoredJSON(STORAGE_KEYS.userProfile, {}),
   };
   return { tasks, settings, stats, profile };
 }
