@@ -128,17 +128,39 @@ export function renderTasks() {
 
 export function renderStatsSummary() {
   const container = document.getElementById("statsSummary");
+  const flowPercent = document.getElementById("flowPercent");
+  const ringProgress = document.getElementById("ringProgress");
+  const flowHint = document.getElementById("flowHint");
+  const dailyGoal = document.getElementById("dailyGoal");
+  const streakBadge = document.getElementById("streakBadge");
+
   if (!container) return;
+
   const completed = state.tasks.filter((task) => task.completed).length;
   const percentage = state.tasks.length
     ? Math.round((completed / state.tasks.length) * 100)
     : 0;
+
+  if (flowPercent) flowPercent.textContent = `${percentage}%`;
+  if (ringProgress) {
+    ringProgress.dataset.progress = percentage;
+    ringProgress.style.background = `conic-gradient(var(--primary-3) 0 ${percentage}%, rgba(255,255,255,0.12) ${percentage}% 100%)`;
+    ringProgress
+      .querySelector(".ring-value")
+      ?.replaceChildren(document.createTextNode(`${percentage}%`));
+  }
+  if (flowHint)
+    flowHint.textContent = `${state.tasks.length - completed} tasks left to finish`;
+  if (dailyGoal) dailyGoal.textContent = `${completed}/${state.tasks.length}`;
+  if (streakBadge)
+    streakBadge.textContent = `${state.stats.streak || 0} streak`;
+
   container.innerHTML = `
     <p class="text-sm text-slate-400">Completion</p>
     <h2 class="mt-2 text-4xl font-bold">${percentage}%</h2>
     <p class="mt-2 text-sm text-slate-400">${completed} of ${state.tasks.length} tasks done</p>
     <div class="mt-4 grid grid-cols-3 gap-2 text-center text-sm">
-      <div class="rounded-2xl bg-white/10 p-2"><div class="font-semibold">${state.stats.streak}</div><div class="text-slate-400">Streak</div></div>
+      <div class="rounded-2xl bg-white/10 p-2"><div class="font-semibold">${state.stats.streak || 0}</div><div class="text-slate-400">Streak</div></div>
       <div class="rounded-2xl bg-white/10 p-2"><div class="font-semibold">${state.tasks.filter((task) => !task.completed).length}</div><div class="text-slate-400">Open</div></div>
       <div class="rounded-2xl bg-white/10 p-2"><div class="font-semibold">${state.stats.history.at(-1) || 0}</div><div class="text-slate-400">Weekly</div></div>
     </div>
