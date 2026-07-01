@@ -1,7 +1,7 @@
 const STORAGE_KEYS = {
-  tasks: "vanta.tasks",
-  settings: "vanta.settings",
-  stats: "vanta.stats",
+  tasks: "banabells.tasks",
+  settings: "banabells.settings",
+  stats: "banabells.stats",
 };
 
 const defaultSettings = {
