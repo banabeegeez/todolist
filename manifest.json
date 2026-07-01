@@ -1,0 +1,18 @@
+{
+  "name": "Vanta Tasks",
+  "short_name": "Vanta",
+  "description": "Premium mobile-first to-do list PWA",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#120B26",
+  "theme_color": "#120B26",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "assets/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

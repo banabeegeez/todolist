@@ -1,0 +1,33 @@
+:root {
+  --bg-1: #120b26;
+  --bg-2: #1b1237;
+  --bg-3: #241548;
+  --primary: #8b5cf6;
+  --primary-2: #a855f7;
+  --primary-3: #c084fc;
+  --glass: rgba(255, 255, 255, 0.1);
+  --text: #f8f7ff;
+  --muted: #9ca3af;
+  --success: #34d399;
+  --danger: #fb7185;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  color: var(--text);
+  background: radial-gradient(
+    circle at top left,
+    var(--bg-3),
+    var(--bg-1) 60%,
+    var(--bg-2)
+  );
+}
+
+.bg-aurora {
+  background: radial-gradient(
+    circle at top left,
+    #2d1d56 0%,
+    var(--bg-1) 30%,
+    var(--bg-2) 100%
+  );
+}

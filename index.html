@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en" class="h-full">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#120B26" />
+    <meta
+      name="description"
+      content="A premium mobile-first productivity PWA"
+    />
+    <title>Vanta Tasks</title>
+    <link rel="manifest" href="manifest.json" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/animation.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+  </head>
+  <body class="min-h-full bg-aurora text-slate-100" data-page="home">
+    <div id="splash" class="splash-screen">
+      <div class="splash-orb"></div>
+      <div class="text-center">
+        <div class="text-4xl font-black tracking-widest">VANTA</div>
+        <p class="mt-2 text-sm text-slate-400">
+          Crafting calm focus for your day
+        </p>
+      </div>
+    </div>
+
+    <div
+      class="mx-auto flex min-h-screen max-w-6xl flex-col px-4 pb-24 pt-4 sm:px-6 lg:px-8"
+    >
+      <header
+        class="mb-4 rounded-[28px] border border-white/10 bg-white/10 px-4 py-4 shadow-[0_20px_60px_rgba(0,0,0,0.25)] backdrop-blur-xl"
+      >
+        <div class="flex items-center justify-between">
+          <div>
+            <p id="greeting" class="text-sm text-slate-400">Good Morning 👋</p>
+            <h1 class="text-xl font-semibold">Hello, Nova</h1>
+          </div>
+          <div class="flex items-center gap-3">
+            <button
+              id="notificationBtn"
+              class="rounded-full border border-white/10 bg-white/10 p-2.5 text-slate-100"
+            >
+              <span>🔔</span>
+            </button>
+            <div
+              class="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br from-fuchsia-500 to-violet-500 font-semibold"
+            >
+              N
+            </div>
+          </div>
+        </div>
+        <div
+          class="mt-4 flex items-center justify-between text-sm text-slate-300"
+        >
+          <span id="todayLabel">Today • Loading…</span>
+          <span
+            class="rounded-full border border-violet-400/40 bg-violet-500/15 px-3 py-1 text-xs font-medium text-violet-200"
+            >Focus Mode</span
+          >
+        </div>
+      </header>
+
+      <section class="mb-4 overflow-x-auto">
+        <div
+          id="calendarStrip"
+          class="flex gap-3 rounded-[24px] border border-white/10 bg-white/10 p-2 backdrop-blur-xl"
+        ></div>
+      </section>
+
+      <section class="mb-4 grid gap-3 md:grid-cols-2">
+        <div
+          class="rounded-[24px] border border-white/10 bg-white/10 p-4 backdrop-blur-xl"
+        >
+          <div class="mb-3 flex items-center justify-between">
+            <p class="text-sm text-slate-400">Today’s Flow</p>
+            <span class="text-sm font-semibold text-violet-300">84%</span>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="ring-progress" data-progress="84">
+              <span class="ring-value">84%</span>
+            </div>
+            <div class="flex-1">
+              <p class="text-sm text-slate-300">You’re on a strong streak.</p>
+              <p class="mt-1 text-xs text-slate-400">3 tasks left to finish</p>
+            </div>
+          </div>
+        </div>
+        <div
+          class="rounded-[24px] border border-white/10 bg-gradient-to-br from-violet-600/30 via-fuchsia-500/20 to-transparent p-4 backdrop-blur-xl"
+        >
+          <p class="text-sm text-slate-300">Daily Goal</p>
+          <div class="mt-2 flex items-end justify-between">
+            <div>
+              <p class="text-3xl font-bold">5/8</p>
+              <p class="text-sm text-slate-400">tasks completed</p>
+            </div>
+            <div
+              class="rounded-full border border-violet-400/40 bg-white/10 px-3 py-1 text-sm text-violet-200"
+            >
+              +2 streak
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="mb-4 rounded-[24px] border border-white/10 bg-white/10 p-4 backdrop-blur-xl"
+      >
+        <div class="mb-3 flex items-center justify-between">
+          <div>
+            <p class="text-sm text-slate-400">Task board</p>
+            <h2 class="text-lg font-semibold">Today’s priorities</h2>
+          </div>
+          <button
+            id="quickAddBtn"
+            class="rounded-full bg-gradient-to-r from-violet-500 to-fuchsia-500 px-4 py-2 text-sm font-semibold text-white"
+          >
+            + New
+          </button>
+        </div>
+        <div
+          class="mb-3 flex items-center gap-2 rounded-full border border-white/10 bg-slate-950/30 px-3 py-2"
+        >
+          <span class="text-slate-400">🔎</span>
+          <input
+            id="searchInput"
+            type="text"
+            placeholder="Search tasks, notes, or tags"
+            class="w-full bg-transparent text-sm outline-none"
+          />
+        </div>
+        <div id="taskFilters" class="mb-3 flex flex-wrap gap-2"></div>
+        <div id="taskList" class="space-y-3"></div>
+      </section>
+    </div>
+
+    <button id="fab" class="fab ripple">+</button>
+
+    <nav class="bottom-nav" aria-label="Bottom navigation">
+      <a class="nav-item active" href="index.html">⌂</a>
+      <a class="nav-item" href="calendar.html">◷</a>
+      <a class="nav-item" href="statistics.html">◔</a>
+      <a class="nav-item" href="settings.html">⚙</a>
+    </nav>
+
+    <div id="taskModal" class="modal hidden">
+      <div class="modal-sheet">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-sm text-slate-400">Capture focus</p>
+            <h3 class="text-xl font-semibold">Create task</h3>
+          </div>
+          <button
+            id="closeModal"
+            class="rounded-full border border-white/10 bg-white/10 p-2"
+          >
+            ✕
+          </button>
+        </div>
+        <form id="taskForm" class="mt-4 space-y-3">
+          <input
+            name="title"
+            required
+            placeholder="Task title"
+            class="input-field"
+          />
+          <textarea
+            name="notes"
+            rows="3"
+            placeholder="Add a note or context"
+            class="input-field"
+          ></textarea>
+          <div class="grid grid-cols-2 gap-3">
+            <select name="category" class="input-field">
+              <option value="Personal">Personal</option>
+              <option value="Work">Work</option>
+              <option value="Wellness">Wellness</option>
+              <option value="Study">Study</option>
+            </select>
+            <select name="priority" class="input-field">
+              <option value="Low">Low</option>
+              <option value="Medium">Medium</option>
+              <option value="High">High</option>
+            </select>
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <input type="date" name="date" class="input-field" />
+            <input type="time" name="time" class="input-field" />
+          </div>
+          <div
+            class="flex items-center justify-between rounded-2xl border border-white/10 bg-white/10 px-3 py-2 text-sm text-slate-300"
+          >
+            <label class="flex items-center gap-2"
+              ><input type="checkbox" name="favorite" /> Favorite</label
+            >
+            <label class="flex items-center gap-2"
+              ><input type="checkbox" name="pin" /> Pin</label
+            >
+          </div>
+          <button
+            class="w-full rounded-2xl bg-gradient-to-r from-violet-500 to-fuchsia-500 px-4 py-3 font-semibold text-white"
+          >
+            Save task
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>
