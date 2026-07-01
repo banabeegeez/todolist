@@ -1,6 +1,6 @@
 {
-  "name": "Vanta Tasks",
-  "short_name": "Vanta",
+  "name": "Banabells Task",
+  "short_name": "Banabells",
   "description": "Premium mobile-first to-do list PWA",
   "start_url": "./index.html",
   "display": "standalone",

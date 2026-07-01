@@ -1,4 +1,4 @@
-# Vanta Tasks PWA
+# Banabells Task PWA
 
 A premium mobile-first to-do list Progressive Web App built with HTML, CSS, Tailwind, vanilla JavaScript, and LocalStorage.
 
