@@ -145,9 +145,14 @@ function initPage() {
   registerServiceWorker();
   wireEvents();
   renderChart();
-  setTimeout(() => {
-    document.getElementById("splash")?.classList.add("hidden");
-  }, 950);
+
+  const splash = document.getElementById("splash");
+  if (splash) {
+    splash.classList.add("hidden");
+    setTimeout(() => {
+      splash.remove();
+    }, 450);
+  }
 }
 
 window.addEventListener("DOMContentLoaded", initPage);
